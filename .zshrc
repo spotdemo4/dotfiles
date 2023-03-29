@@ -77,7 +77,7 @@ ZSH_CUSTOM="$HOME/.config/oh-my-zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colorize safe-paste z command-not-found zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git colorize safe-paste z command-not-found fancy-ctrl-z zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 

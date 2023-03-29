@@ -77,7 +77,7 @@ ZSH_CUSTOM="$HOME/.config/oh-my-zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colorize safe-paste z zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git colorize safe-paste z command-not-found zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,12 +110,19 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Update alias
+# UPDATE ALIAS
+UPDATECOMMANDS=()
+
+# Get current OS
 if [ -f /etc/os-release ]; then
   . /etc/os-release
 fi
 
-UPDATECOMMANDS=() 
+# Update dotfiles 
+UPDATECOMMANDS+=('git -C ~ pull origin main')
+UPDATECOMMANDS+=('git -C ~ submodule update --recursive --remote')
+
+# Update packages
 if [ "$NAME" = "Arch Linux" ]; then
   UPDATECOMMANDS+=('sudo pacman -Sy')
   if pacman -Qs powerpill > /dev/null ; then
@@ -132,11 +139,12 @@ elif [ "$NAME" = "Debian GNU/Linux" ]; then
   UPDATECOMMANDS+=('sudo apt upgrade')
 fi
 
+# Update docker containers
 if [ "$(systemctl is-active docker)" = "active" ]; then
   UPDATECOMMANDS+=('docker run --rm -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --run-once')
 fi
 
+# Create alias
 update=$(printf " && %s" "${UPDATECOMMANDS[@]}")
 update=${update:4}
 alias update=${update}
-

@@ -70,14 +70,14 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=${XDG_CACHE_HOME:-$HOME/.config/oh-my-zsh}
+ZSH_CUSTOM="$HOME/.config/oh-my-zsh"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(git colorize safe-paste z zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -139,9 +139,4 @@ fi
 update=$(printf " && %s" "${UPDATECOMMANDS[@]}")
 update=${update:4}
 alias update=${update}
-
-  
-
-
-
 

@@ -124,12 +124,7 @@ UPDATECOMMANDS+=('git -C ~ submodule update --recursive --remote')
 
 # Update packages
 if [ "$NAME" = "Arch Linux" ]; then
-  UPDATECOMMANDS+=('sudo pacman -Sy')
-  if pacman -Qs powerpill > /dev/null ; then
-    UPDATECOMMANDS+=('sudo powerpill -Su')
-  else
-    UPDATECOMMANDS+=('sudo pacman -Su')
-  fi
+  UPDATECOMMANDS+=('sudo pacman -Syu')
 
   if pacman -Qs paru > /dev/null ; then
     UPDATECOMMANDS+=('paru -Su')
